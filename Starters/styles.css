@@ -1,0 +1,56 @@
+p{
+    color:red;
+}
+
+h1{
+    font-weight: bold;
+    color: #5603fc;
+}
+
+div{
+    background-color:green;
+    color:red;
+}
+
+#helloworld{
+    font-weight:700;
+    color: purple;
+}
+
+.buttonStyle{
+    background-color:blue;
+    color:red;
+}
+
+.h2Color{
+    color:red;
+}
+.h2Background{
+    background-color: aqua;
+}
+
+.pinkBlueStyle {
+    background-color: #fc03be;
+    color: blue;
+    text-decoration:underline;
+}
+.mySecondClass {
+    font-style: italic;
+    color: yellow;
+    text-decoration: none;
+}
+
+div p {
+    color: green;
+}
+
+a:link{
+    text-decoration:none;
+    color: gray;
+}
+
+a:hover {
+    color: red;
+    text-decoration: underline;
+}
+

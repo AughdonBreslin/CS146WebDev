@@ -4,19 +4,20 @@
 
 document.getElementById("output").innerText='0';
 var currentOp = "";
-var result = document.getElementById("output");
+var result = 0;
 var buffer = 0;
 
 /** 
  * Resets the state of the calculator and the display
  */
 function resetCalc() {
-   result.innerText = 0;
+   setDisplay('0');
    buffer = 0;
+   result = 0;
    currentOp = "";
 }
 
-/** GOOD
+/**
  * Sets the inner text of the div with id="output"
  * @param {String} str the string to set the inner text to
  */
@@ -29,7 +30,7 @@ function setDisplay(str) {
  * Hint: you can use a global variable for the result
  */
 function getResult() {
-   return result.innerText;
+   return result;
 }
 
 /**
@@ -37,13 +38,17 @@ function getResult() {
  * @param {Number} num the number that was pressed
  */
 function pressNum(num) {
-   if (result.innerText <= 99999999 && result.innerText >= -99999999){
-      if (result.innerText == 0){
-         result.innerText = num;
+   if (parseInt(result.toString() + num) <= 999999999 && parseInt(result.toString() + num) >= -999999999){
+      if (result == 0){
+         result = num;
       }
       else{
-         result.innerText += num;
+         result = parseInt(result.toString() + num);
       }
+      setDisplay(result);
+   }
+   else{
+      setDisplay(999999999);
    }
 }
 
@@ -53,8 +58,11 @@ function pressNum(num) {
  * @param {String} op the operation pressed, either: +,-,*,/
  */
 function pressOp(op) {
-   buffer = getResult();
-   result.innerText = 0;
+   if (result !=0){
+      buffer = result;
+      result = 0;
+   }
+   setDisplay(0);
    currentOp = op;
 
 }
@@ -66,21 +74,28 @@ function pressOp(op) {
  */
 function pressEquals() {
    if (currentOp == '*'){
-      result.innerText = buffer * result.innerText;
+      result = buffer * result;
+      setDisplay(result);
    }
    else if (currentOp == '/'){
-      if(result.innerText != 0){
-         result.innerText = buffer / result.innerText;
+      if(result != 0){
+         result = parseInt(buffer / result);
+         setDisplay(result);
       }
       else{
-         result.innerText = 'ERROR'; 
+         result = 0;
+         setDisplay('ERROR');
       }
    }
    else if (currentOp == '-'){
-      result.innerText = buffer - result.innerText;
+      result = buffer - result;
+      setDisplay(result);
    }
    else if (currentOp == '+'){
-      result.innerText = buffer + result.innerText;
+      result = buffer + result;
+      setDisplay(result);
    }
-   return result.innerText;
+   if (result > 999999999){
+      setDisplay(999999999);
+   }
 }

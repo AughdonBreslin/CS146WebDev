@@ -47,8 +47,11 @@ function pressNum(num) {
       }
       setDisplay(result);
    }
-   else{
+   else if (parseInt(result.toString() + num) > 999999999){
       setDisplay(999999999);
+   }
+   else{
+      setDisplay(-999999999);
    }
 }
 
@@ -97,5 +100,8 @@ function pressEquals() {
    }
    if (result > 999999999){
       setDisplay(999999999);
+   }
+   else if (result < -999999999){
+      setDisplay(-999999999);
    }
 }
